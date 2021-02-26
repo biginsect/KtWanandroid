@@ -1,7 +1,7 @@
 package com.biginsect.ktwanandroid.constant
 
 /**
- *@author lipeng
+ *@author biginsect
  *Created at 2021/2/22 20:16
  */
 object Constants {

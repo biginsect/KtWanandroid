@@ -3,8 +3,8 @@ ext{
             'glide'             : "4.12.0",
             'retrofit'          : "2.9.0",
             'okhttp'            : "4.9.0",
+            'logger'            : "2.2.0",
             'kt_coroutines'     : "1.4.2",
-
             'kotlin_version'    : "1.4.21",
             'constraintlayout'  : "2.0.4",
             'appcompat'         : "1.2.0",
@@ -18,8 +18,9 @@ ext{
             'retrofitGson'          : "com.squareup.retrofit2:converter-gson:${versions.retrofit}",
             'okhttp'                : "com.squareup.okhttp3:okhttp:${versions.okhttp}",
             'okhttpLogging'         : "com.squareup.okhttp3:logging-interceptor:${versions.okhttp}",
-            'kt_coroutines'         : "org.jetbrains.kotlinx:kotlinx-coroutines-core:${versions.kt_coroutines}",
+            'logger'                : "com.orhanobut:logger:${versions.logger}",
 
+            'kt_coroutines'         : "org.jetbrains.kotlinx:kotlinx-coroutines-core:${versions.kt_coroutines}",
             'kotlin'                : "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlin_version}",
             'constraintlayout'      : "androidx.constraintlayout:constraintlayout:${versions.constraintlayout}",
             'appcompat'             : "androidx.appcompat:appcompat:${versions.appcompat}",

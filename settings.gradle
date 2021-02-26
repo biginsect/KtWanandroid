@@ -1,2 +1,4 @@
+include ':base_bussiness'
+include ':mvp'
 include ':app'
 rootProject.name = "KtWanandroid"
