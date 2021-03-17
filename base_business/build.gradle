@@ -7,7 +7,7 @@ android {
     buildToolsVersion "29.0.3"
 
     defaultConfig {
-        applicationId "com.biginsect.mvp"
+        applicationId "com.biginsect.base_business"
         minSdkVersion 29
         targetSdkVersion 29
         versionCode 1
@@ -30,7 +30,9 @@ dependencies {
     implementation deps.ktx_core
     implementation deps.appcompat
     implementation deps.logger
-    api project(":base_business")
+    implementation deps.constraintlayout
+    implementation deps.superTextView
+    implementation deps.lottie
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
