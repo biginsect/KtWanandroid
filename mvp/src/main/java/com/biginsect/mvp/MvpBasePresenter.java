@@ -1,0 +1,61 @@
+package com.biginsect.mvp;
+
+import androidx.annotation.UiThread;
+
+import org.jetbrains.annotations.Nullable;
+
+import java.lang.ref.WeakReference;
+
+/**
+ * @author biginsect
+ * Created at 2021/3/18 20:27
+ */
+public abstract class MvpBasePresenter<V extends MvpView> implements MvpPresenter<V> {
+
+    private WeakReference<V> viewRef;
+    private boolean presenterDestroy = false;
+
+    @Override
+    public void attachView(@Nullable V v) {
+        viewRef = new WeakReference<>(v);
+        presenterDestroy = false;
+    }
+
+    @Override
+    public void destroy() {
+        presenterDestroy = true;
+    }
+
+    @Override
+    public void detachView() {
+        if (viewRef != null) {
+            viewRef.clear();
+            viewRef = null;
+        }
+    }
+
+    @UiThread
+    public V getView() {
+        return viewRef != null ? viewRef.get() : null;
+    }
+
+    @UiThread
+    public boolean isViewAttached() {
+        return viewRef != null && viewRef.get() != null;
+    }
+
+    protected final void ifViewAttached(ViewAction<V> action) {
+        if (action == null) {
+            return;
+        }
+
+        final V view = viewRef != null ? viewRef.get() : null;
+        if (view != null) {
+            action.run(view);
+        }
+    }
+
+    public interface ViewAction<V> {
+        void run(V view);
+    }
+}
