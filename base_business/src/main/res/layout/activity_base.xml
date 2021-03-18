@@ -17,4 +17,11 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tb_base" />
 
+    <com.biginsect.base_business.widget.StateLayout
+        android:id="@+id/sl_base"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toBottomOf="@id/tb_base"
+        android:visibility="invisible" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

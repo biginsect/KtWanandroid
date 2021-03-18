@@ -25,7 +25,7 @@ class StateLayout @JvmOverloads constructor(
     private lateinit var mRetry: Wrapper
     private lateinit var mLoading: Wrapper
     private lateinit var mEmpty: Wrapper
-    private var mReloadClickListener: OnReloadClickListener? = null
+    var reloadClickListener: OnReloadClickListener? = null
 
     override fun onFinishInflate() {
         super.onFinishInflate()
@@ -103,7 +103,7 @@ class StateLayout @JvmOverloads constructor(
 
     private fun handleRetryInflated(vs: ViewStub, view: View) {
         view.findViewById<SuperButton>(R.id.btn_retry).setOnClickListener {
-            mReloadClickListener?.onReload()
+            reloadClickListener?.onReload()
         }
     }
 

@@ -1,16 +1,19 @@
 ext{
     versions = [
-            'glide'             : "4.12.0",
-            'retrofit'          : "2.9.0",
-            'okhttp'            : "4.9.0",
-            'logger'            : "2.2.0",
-            'kt_coroutines'     : "1.4.2",
-            'kotlin_version'    : "1.4.21",
-            'constraintlayout'  : "2.0.4",
-            'appcompat'         : "1.2.0",
-            'ktx_core'          : "1.3.2",
-            'superTextView'     : "2.4.2",
-            'lottie'            : "3.6.1",
+            'glide'                 : "4.12.0",
+            'retrofit'              : "2.9.0",
+            'okhttp'                : "4.9.0",
+            'logger'                : "2.2.0",
+            'kt_coroutines'         : "1.4.2",
+            'kotlin_version'        : "1.4.21",
+            'constraintlayout'      : "2.0.4",
+            'appcompat'             : "1.2.0",
+            'ktx_core'              : "1.3.2",
+            'superTextView'         : "2.4.2",
+            'lottie'                : "3.6.1",
+            'butterKnife'           : "10.2.3",
+            'baseAdapter'           : "3.0.4",
+            'fragmentTransition'    : "1.0.2",
     ]
 
     deps = [
@@ -29,5 +32,9 @@ ext{
             'ktx_core'              : "androidx.core:core-ktx:${versions.ktx_core}",
             'superTextView'         : "com.github.lygttpod:SuperTextView:${versions.superTextView}",
             'lottie'                : "com.airbnb.android:lottie:${versions.lottie}",
+            'butterKnife'           : "com.jakewharton:butterknife:${versions.butterKnife}",
+            'butterKnifeCompile'    : "com.jakewharton:butterknife-compiler:${versions.butterKnife}",
+            'baseAdapter'           : "com.github.CymChad:BaseRecyclerViewAdapterHelper:${versions.baseAdapter}",
+            'fragmentTransition'    : "me.yokeyword:fragmentationx:${versions.fragmentTransition}",
     ]
 }
