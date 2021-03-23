@@ -1,6 +1,7 @@
-package com.biginsect.base_business.ui
+package com.biginsect.base_business.mvp
 
 import android.os.Bundle
+import com.biginsect.base_business.ui.BaseActivity
 import com.biginsect.mvp.ActivityMvpDelegateImpl
 import com.biginsect.mvp.MvpDelegateCallback
 import com.biginsect.mvp.MvpPresenter

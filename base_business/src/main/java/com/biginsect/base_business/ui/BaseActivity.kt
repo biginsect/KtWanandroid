@@ -4,10 +4,8 @@ import android.os.Bundle
 import android.view.MotionEvent
 import android.view.View
 import android.widget.FrameLayout
+import androidx.annotation.CallSuper
 import androidx.annotation.StringRes
-import butterknife.BindView
-import butterknife.ButterKnife
-import butterknife.Unbinder
 import com.biginsect.base_business.R
 import com.biginsect.base_business.widget.StateLayout
 import com.biginsect.base_business.widget.TitleBar
@@ -22,14 +20,9 @@ abstract class BaseActivity : AbsActivity(), ISupportActivity,
     StateLayout.OnReloadClickListener {
 
     private val mDelegate by lazy { SupportActivityDelegate(this) }
-    private lateinit var unbinder: Unbinder
+    private lateinit var mTitleBar: TitleBar
     private lateinit var mRootContainer: FrameLayout
-
-    @BindView(R.id.tb_base)
-    lateinit var mTitleBar: TitleBar
-
-    @BindView(R.id.sl_base)
-    lateinit var mStateLayout: StateLayout
+    private lateinit var mStateLayout: StateLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,23 +32,24 @@ abstract class BaseActivity : AbsActivity(), ISupportActivity,
         if (getLayoutId() != 0) {
             mRootContainer.addView(layoutInflater.inflate(getLayoutId(), null))
         }
+        mTitleBar = rootView.findViewById(R.id.tb_base)
+        mStateLayout = rootView.findViewById(R.id.sl_base)
         super.setContentView(rootView)
-        unbinder = ButterKnife.bind(this, rootView)
-        setStatusBarColor(R.color.Main)
         mStateLayout.reloadClickListener = this
+        initView()
+        initData()
     }
 
-    override fun setContentView(layoutResID: Int) {
+    final override fun setContentView(layoutResID: Int) {
         setContentView(layoutInflater.inflate(layoutResID, null))
     }
 
-    override fun setContentView(view: View?) {
+    final override fun setContentView(view: View?) {
         mRootContainer.addView(view)
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        unbinder.unbind()
         mDelegate.onDestroy()
     }
 
@@ -140,6 +134,15 @@ abstract class BaseActivity : AbsActivity(), ISupportActivity,
 
     fun <T : ISupportFragment> findFragment(fragmentClass: Class<T>): T {
         return SupportHelper.findFragment(supportFragmentManager, fragmentClass)
+    }
+
+    @CallSuper
+    open fun initView(){
+    }
+
+    @CallSuper
+    open fun initData(){
+
     }
 
     abstract fun getLayoutId(): Int

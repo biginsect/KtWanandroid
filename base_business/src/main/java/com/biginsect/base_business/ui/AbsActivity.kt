@@ -2,10 +2,12 @@ package com.biginsect.base_business.ui
 
 import android.os.Bundle
 import android.view.View
+import android.view.WindowManager
 import android.widget.FrameLayout
 import androidx.annotation.ColorRes
 import androidx.appcompat.app.AppCompatActivity
 import com.biginsect.base_business.R
+import com.biginsect.base_business.util.StatusBarUtils
 import com.biginsect.base_business.widget.StatusBarViewStub
 
 /**
@@ -21,6 +23,7 @@ abstract class AbsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         super.setContentView(R.layout.layout_root)
         initStatusBar()
+        setImmersive()
     }
 
     override fun setContentView(layoutResID: Int) {
@@ -42,6 +45,14 @@ abstract class AbsActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * 沉浸式
+     * */
+    protected fun setImmersive() {
+        actionBar?.hide()
+        StatusBarUtils.statusBarLightMode(this, isStatusBarDarkStyle())
+    }
+
     private fun initStatusBar() {
         mStatusBarViewStub = findViewById(R.id.sb_root)
         if (showStatusBar()) {
@@ -53,11 +64,15 @@ abstract class AbsActivity : AppCompatActivity() {
     }
 
 
-    protected fun showStatusBar(): Boolean {
+    open fun showStatusBar(): Boolean {
         return true
     }
 
-    protected fun getStatusBarColor(): Int {
+    open fun isStatusBarDarkStyle(): Boolean {
+        return true
+    }
+
+    open fun getStatusBarColor(): Int {
         return resources.getColor(R.color.color_FFFFFF, null)
     }
 

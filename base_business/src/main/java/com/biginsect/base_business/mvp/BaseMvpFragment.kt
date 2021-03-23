@@ -1,8 +1,9 @@
-package com.biginsect.base_business.ui
+package com.biginsect.base_business.mvp
 
 import android.content.Context
 import android.os.Bundle
 import android.view.View
+import com.biginsect.base_business.ui.BaseFragment
 import com.biginsect.mvp.*
 
 /**

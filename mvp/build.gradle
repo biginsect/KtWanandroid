@@ -1,4 +1,4 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
@@ -7,7 +7,6 @@ android {
     buildToolsVersion "29.0.3"
 
     defaultConfig {
-        applicationId "com.biginsect.mvp"
         minSdkVersion 29
         targetSdkVersion 29
         versionCode 1
@@ -30,7 +29,6 @@ dependencies {
     implementation deps.ktx_core
     implementation deps.appcompat
     implementation deps.logger
-    api project(":base_business")
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'

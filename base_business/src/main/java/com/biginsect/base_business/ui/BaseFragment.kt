@@ -11,12 +11,10 @@ import android.widget.FrameLayout
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import butterknife.BindView
-import butterknife.ButterKnife
-import butterknife.Unbinder
 import com.biginsect.base_business.R
 import com.biginsect.base_business.widget.StateLayout
 import com.biginsect.base_business.widget.TitleBar
+import kotlinx.android.synthetic.main.activity_base.*
 import me.yokeyword.fragmentation.ExtraTransaction
 import me.yokeyword.fragmentation.ISupportFragment
 import me.yokeyword.fragmentation.SupportFragmentDelegate
@@ -29,15 +27,11 @@ import me.yokeyword.fragmentation.anim.FragmentAnimator
 abstract class BaseFragment : Fragment(), StateLayout.OnReloadClickListener, ISupportFragment {
 
     protected lateinit var mRootView: View
-    private lateinit var unbinder: Unbinder
     private val mDelegate: SupportFragmentDelegate by lazy { SupportFragmentDelegate(this) }
     protected lateinit var mAppActivity: AppCompatActivity
 
-    @BindView(R.id.tb_base)
-    lateinit var mTitleBar: TitleBar
-
-    @BindView(R.id.sl_base)
-    lateinit var mStateLayout: StateLayout
+    private lateinit var mTitleBar: TitleBar
+    private lateinit var mStateLayout: StateLayout
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -45,7 +39,6 @@ abstract class BaseFragment : Fragment(), StateLayout.OnReloadClickListener, ISu
         savedInstanceState: Bundle?
     ): View? {
         mRootView = inflater.inflate(R.layout.activity_base, container, false)
-        unbinder = ButterKnife.bind(this, mRootView)
         val contentView = mRootView.findViewById<FrameLayout>(R.id.fl_container)
         if (getLayoutId() != 0) {
             contentView.addView(inflater.inflate(getLayoutId(), container, false))
@@ -53,6 +46,12 @@ abstract class BaseFragment : Fragment(), StateLayout.OnReloadClickListener, ISu
         mStateLayout.reloadClickListener = this
 
         return mRootView
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        mTitleBar = tb_base
+        mStateLayout = sl_base
     }
 
     override fun onReload() {
@@ -110,7 +109,6 @@ abstract class BaseFragment : Fragment(), StateLayout.OnReloadClickListener, ISu
 
     override fun onDestroy() {
         super.onDestroy()
-        unbinder.unbind()
         mDelegate.onDestroy()
     }
 

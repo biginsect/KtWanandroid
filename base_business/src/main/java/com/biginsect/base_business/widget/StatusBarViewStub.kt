@@ -3,7 +3,7 @@ package com.biginsect.base_business.widget
 import android.content.Context
 import android.util.AttributeSet
 import android.view.View
-import com.biginsect.base_business.utils.ScreenUtils
+import com.biginsect.base_business.util.ScreenUtils
 
 /**
  * 适配水滴屏等异形机
@@ -19,10 +19,10 @@ class StatusBarViewStub @JvmOverloads constructor(
     private var realHeight = 0
 
     init {
-        realHeight = ScreenUtils.getScreenRealHeight(context)
+        realHeight = ScreenUtils.getStatusBarHeight(context)
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-        super.onMeasure(MeasureSpec.getSize(widthMeasureSpec), realHeight)
+        setMeasuredDimension(MeasureSpec.getSize(widthMeasureSpec), realHeight)
     }
 }

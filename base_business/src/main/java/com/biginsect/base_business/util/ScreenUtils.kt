@@ -1,4 +1,4 @@
-package com.biginsect.base_business.utils
+package com.biginsect.base_business.util
 
 import android.content.Context
 import android.graphics.Point

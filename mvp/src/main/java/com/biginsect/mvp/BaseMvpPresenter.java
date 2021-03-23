@@ -2,7 +2,7 @@ package com.biginsect.mvp;
 
 import androidx.annotation.UiThread;
 
-import org.jetbrains.annotations.Nullable;
+import com.orhanobut.logger.Logger;
 
 import java.lang.ref.WeakReference;
 
@@ -10,13 +10,13 @@ import java.lang.ref.WeakReference;
  * @author biginsect
  * Created at 2021/3/18 20:27
  */
-public abstract class MvpBasePresenter<V extends MvpView> implements MvpPresenter<V> {
-
+public abstract class BaseMvpPresenter<V extends MvpView> implements MvpPresenter<V> {
     private WeakReference<V> viewRef;
     private boolean presenterDestroy = false;
 
     @Override
-    public void attachView(@Nullable V v) {
+    public void attachView(V v) {
+        Logger.d("sssssview is :" + v + this);
         viewRef = new WeakReference<>(v);
         presenterDestroy = false;
     }
@@ -29,6 +29,7 @@ public abstract class MvpBasePresenter<V extends MvpView> implements MvpPresente
     @Override
     public void detachView() {
         if (viewRef != null) {
+            Logger.d("detach-->" + viewRef.get().toString());
             viewRef.clear();
             viewRef = null;
         }
