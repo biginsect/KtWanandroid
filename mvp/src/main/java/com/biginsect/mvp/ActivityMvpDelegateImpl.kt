@@ -16,7 +16,7 @@ class ActivityMvpDelegateImpl<V : MvpView, P : MvpPresenter<V>>(
 ) : ActivityMvpDelegate<V, P> {
 
     private companion object {
-        var DEBUG = false
+        var DEBUG = true
         const val KEY_VIEW_ID = "activity_mvp_id"
         const val TAG = "ActivityMvpDelegateImpl"
         fun retainPresenterInstance(
@@ -49,18 +49,17 @@ class ActivityMvpDelegateImpl<V : MvpView, P : MvpPresenter<V>>(
         if (bundle != null && keepPresenterInstance) {
             viewId = bundle.getString(KEY_VIEW_ID)
             if (DEBUG) {
-                Logger.d(TAG, "MosbyView ID = $viewId for MvpView ${delegateCallback.getMvpView()}")
+                Logger.d("MosbyView ID = $viewId for MvpView ${delegateCallback.getMvpView()}")
             }
 
             if (viewId != null) {
                 presenter = PresenterManager.getPresenter(activity, viewId)
                 if (presenter != null) {
-                    Logger.d(TAG, "Reused presenter $presenter for view ${delegateCallback.getMvpView()}")
+                    Logger.d( "Reused presenter $presenter for view ${delegateCallback.getMvpView()}")
                 } else {
                     presenter = createViewAndPresenter()
                     if (DEBUG) {
-                        Logger.d(
-                            TAG, "No presenter found although view Id was here: $viewId ." +
+                        Logger.d("No presenter found although view Id was here: $viewId ." +
                                     "Most likely this was caused by a process death. New Presenter created $presenter for view ${getMvpView()}"
                         )
                     }
@@ -69,7 +68,7 @@ class ActivityMvpDelegateImpl<V : MvpView, P : MvpPresenter<V>>(
         } else {
             presenter = createViewAndPresenter()
             if (DEBUG) {
-                Logger.d(TAG, "New presenter $presenter for view ${getMvpView()}")
+                Logger.d("New presenter $presenter for view ${getMvpView()}")
             }
         }
         if (presenter == null) {
@@ -78,7 +77,7 @@ class ActivityMvpDelegateImpl<V : MvpView, P : MvpPresenter<V>>(
         delegateCallback.setPresenter(presenter)
         getPresenter().attachView(getMvpView())
         if (DEBUG) {
-            Logger.d(TAG, "View ${getMvpView()} attached to presenter $presenter")
+            Logger.d( "View ${getMvpView()} attached to presenter $presenter")
         }
     }
 
@@ -112,9 +111,9 @@ class ActivityMvpDelegateImpl<V : MvpView, P : MvpPresenter<V>>(
 
         if (DEBUG) {
             if (retainPresenterInstance) {
-                Logger.d(TAG, "View ${getMvpView()} destroy temporarily. View detached from presenter ${getPresenter()}")
+                Logger.d("View ${getMvpView()} destroy temporarily. View detached from presenter ${getPresenter()}")
             } else {
-                Logger.d(TAG, "View ${getMvpView()} destroy permanently. View detached permanently from presenter ${getPresenter()}")
+                Logger.d("View ${getMvpView()} destroy permanently. View detached permanently from presenter ${getPresenter()}")
             }
         }
     }
@@ -131,7 +130,7 @@ class ActivityMvpDelegateImpl<V : MvpView, P : MvpPresenter<V>>(
         if (keepPresenterInstance && outState != null) {
             outState.putString(KEY_VIEW_ID, viewId)
             if (DEBUG) {
-                Logger.d(TAG, "Saving MosbyViewId into Bundle. ViewId: $viewId for view ${getMvpView()}")
+                Logger.d( "Saving MosbyViewId into Bundle. ViewId: $viewId for view ${getMvpView()}")
             }
         }
     }
@@ -154,7 +153,7 @@ class ActivityMvpDelegateImpl<V : MvpView, P : MvpPresenter<V>>(
     }
 
     private fun getPresenter(): P {
-        return delegateCallback.createPresenter()
+        return delegateCallback.getPresenter()
             ?: throw NullPointerException("Presenter returned from getPresenter() is null")
     }
 

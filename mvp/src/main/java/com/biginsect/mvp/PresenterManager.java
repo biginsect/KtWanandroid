@@ -23,7 +23,7 @@ import java.util.UUID;
  */
 final class PresenterManager {
 
-    private static boolean DEBUG = false;
+    private static boolean DEBUG = true;
     private final static String TAG = PresenterManager.class.getSimpleName();
     private final static String KEY_ACTIVITY_ID = "PresenterManagerActivityId";
     private final static Map<Activity, String> MAP_ACTIVITY_ID = new ArrayMap<>();
@@ -83,7 +83,7 @@ final class PresenterManager {
                     if (MAP_ACTIVITY_SCOPED_CACHE.isEmpty()) {
                         activity.getApplication().unregisterActivityLifecycleCallbacks(ACTIVITY_LIFECYCLE_CALLBACKS);
                         if (DEBUG) {
-                            Logger.d(TAG, "unregisterActivityLifecycleCallbacks");
+                            Logger.d("unregisterActivityLifecycleCallbacks");
                         }
                     }
                 }
@@ -105,7 +105,7 @@ final class PresenterManager {
             if (MAP_ACTIVITY_ID.size() == 1) {
                 activity.getApplication().registerActivityLifecycleCallbacks(ACTIVITY_LIFECYCLE_CALLBACKS);
                 if (DEBUG) {
-                    Logger.d(TAG, "registerActivityLifecycleCallbacks");
+                    Logger.d("registerActivityLifecycleCallbacks");
                 }
             }
         }
@@ -140,7 +140,7 @@ final class PresenterManager {
 
     public static Activity getActivity(Context context) {
         if (context == null) {
-            Logger.e(TAG, "context is null");
+            Logger.e("context is null");
             return null;
         }
 

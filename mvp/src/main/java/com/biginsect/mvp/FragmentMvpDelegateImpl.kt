@@ -22,7 +22,7 @@ class FragmentMvpDelegateImpl<V : MvpView, P : MvpPresenter<V>>(
 
     private companion object {
         const val KEY_VIEW_ID = "fragment.mvp.id"
-        var DEBUG = false
+        var DEBUG = true
         const val TAG = "FragmentMvpDelegateImpl"
 
         fun retainPresenterInstance(
@@ -75,17 +75,16 @@ class FragmentMvpDelegateImpl<V : MvpView, P : MvpPresenter<V>>(
         if (savedState != null && keepPresenterDuringScreenOrientationChange) {
             viewId = savedState.getString(KEY_VIEW_ID)
             if (DEBUG) {
-                Logger.d(TAG, "MosbyView ID $viewId for MvpView ${delegateCallback.getMvpView()}")
+                Logger.d("MosbyView ID $viewId for MvpView ${delegateCallback.getMvpView()}")
             }
             if (viewId != null) {
                 presenter = PresenterManager.getPresenter(getActivity(), viewId)
                 if (presenter != null) {
-                    Logger.d(TAG, "Reused presenter $presenter for view ${delegateCallback?.getMvpView()}")
+                    Logger.d("Reused presenter $presenter for view ${delegateCallback?.getMvpView()}")
                 } else {
                     presenter = createViewIdAndPresenter()
                     if (DEBUG) {
-                        Logger.d(
-                            TAG, "No presenter found although view Id was here: $viewId ." +
+                        Logger.d("No presenter found although view Id was here: $viewId ." +
                                     "Most likely this was caused by a process death. New Presenter created $presenter for view ${getMvpView()}"
                         )
                     }
@@ -94,7 +93,7 @@ class FragmentMvpDelegateImpl<V : MvpView, P : MvpPresenter<V>>(
         } else {
             presenter = createViewIdAndPresenter()
             if (DEBUG) {
-                Logger.d(TAG, "New presenter $presenter for view ${getMvpView()}")
+                Logger.d("New presenter $presenter for view ${getMvpView()}")
             }
         }
         if (presenter == null) {
@@ -110,7 +109,7 @@ class FragmentMvpDelegateImpl<V : MvpView, P : MvpPresenter<V>>(
         val presenter = getPresenter()
         if (!retainPresenterInstance) {
             presenter.destroy()
-            Logger.d(TAG, "Presenter destroyed. MvpView ${delegateCallback.getMvpView()} presenter: $presenter")
+            Logger.d("Presenter destroyed. MvpView ${delegateCallback.getMvpView()} presenter: $presenter")
             if (viewId != null) {
                 PresenterManager.remove(activity, viewId)
             }
@@ -122,7 +121,7 @@ class FragmentMvpDelegateImpl<V : MvpView, P : MvpPresenter<V>>(
         presenter.attachView(getMvpView())
         onViewCreatedCalled = true
         if (DEBUG) {
-            Logger.d(TAG, "View ${getMvpView()} attached to presenter $presenter")
+            Logger.d("View ${getMvpView()} attached to presenter $presenter")
         }
     }
 
@@ -130,7 +129,7 @@ class FragmentMvpDelegateImpl<V : MvpView, P : MvpPresenter<V>>(
         onViewCreatedCalled = false
         getPresenter().detachView()
         if (DEBUG) {
-            Logger.d(TAG, "detached MvpView from Presenter. MvpView ${delegateCallback?.getMvpView()} presenter: ${getPresenter()}")
+            Logger.d("detached MvpView from Presenter. MvpView ${delegateCallback?.getMvpView()} presenter: ${getPresenter()}")
         }
     }
 
@@ -168,7 +167,7 @@ class FragmentMvpDelegateImpl<V : MvpView, P : MvpPresenter<V>>(
         if (outState != null && (keepPresenterDuringScreenOrientationChange || keepPresenterOnBackStack)) {
             outState.putString(KEY_VIEW_ID, viewId)
             if (DEBUG) {
-                Logger.d(TAG, "Saving MosbyViewId into Bundle. ViewId: $viewId")
+                Logger.d("Saving MosbyViewId into Bundle. ViewId: $viewId")
             }
         }
     }

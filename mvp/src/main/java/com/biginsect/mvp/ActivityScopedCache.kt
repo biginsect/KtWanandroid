@@ -16,15 +16,15 @@ class ActivityScopedCache {
     private val presenterMap = ArrayMap<String, PresenterHolder>()
 
     private fun logViewIdNull() {
-        Logger.e(TAG, "viewId is null")
+        Logger.e("viewId is null")
     }
 
     private fun logPresenterNull() {
-        Logger.e(TAG, "presenter is null")
+        Logger.e("presenter is null")
     }
 
     private fun logViewStateNull() {
-        Logger.e(TAG, "ViewState is null")
+        Logger.e("ViewState is null")
     }
 
     fun clear() {
