@@ -26,7 +26,6 @@ android {
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation deps.kotlin
-    implementation deps.ktx_core
     implementation deps.appcompat
     implementation deps.logger
 

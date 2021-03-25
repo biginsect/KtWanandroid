@@ -32,7 +32,9 @@ dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     api project(":mvp")
     implementation deps.kotlin
-    implementation deps.ktx_core
+    implementation deps.LiveData
+    implementation deps.LifecycleScope
+    implementation deps.ViewModel
     implementation deps.appcompat
     implementation deps.logger
     implementation deps.constraintlayout

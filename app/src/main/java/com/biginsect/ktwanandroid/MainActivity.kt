@@ -1,14 +1,12 @@
 package com.biginsect.ktwanandroid
 
-import android.util.Log
-import android.widget.Toast
 import com.biginsect.base_business.mvp.BaseMvpActivity
+import com.biginsect.ktwanandroid.util.showToast
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseMvpActivity<Contract.IMainView, Contract.IMainPresenter>(), Contract.IMainView {
 
     override fun createPresenter(): Contract.IMainPresenter {
-        Log.d("","sssss create presenter")
         return MainPresenter()
     }
 
@@ -17,7 +15,7 @@ class MainActivity : BaseMvpActivity<Contract.IMainView, Contract.IMainPresenter
     }
 
     override fun show(result: Int) {
-        Toast.makeText(this@MainActivity, "result is $result", Toast.LENGTH_SHORT).show()
+        showToast("result is $result")
     }
 
     override fun initView() {

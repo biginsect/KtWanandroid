@@ -1,4 +1,4 @@
-package com.biginsect.ktwanandroid
+package com.biginsect.ktwanandroid.app
 
 import android.content.Context
 import com.bumptech.glide.GlideBuilder
