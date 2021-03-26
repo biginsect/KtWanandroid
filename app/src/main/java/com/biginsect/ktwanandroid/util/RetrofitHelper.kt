@@ -1,6 +1,8 @@
 package com.biginsect.ktwanandroid.util
 
 import android.util.Log
+import com.biginsect.ktwanandroid.api.IWanApi
+import com.biginsect.ktwanandroid.constant.Constants
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -23,7 +25,9 @@ object RetrofitHelper {
     private const val TIMEOUT_CONNECT = 30L
     private const val TIMEOUT_READ = 10L
 
-    fun <T> getService(url: String, service: Class<T>): T = create(url).create(service)
+    val WanService by lazy { getService(Constants.BASE_URL, IWanApi::class.java) }
+
+    private fun <T> getService(url: String, service: Class<T>): T = create(url).create(service)
 
     private fun create(url: String): Retrofit {
         val okHttpClientBuilder = OkHttpClient().newBuilder().apply {
@@ -37,7 +41,7 @@ object RetrofitHelper {
                 val domain = request.url.host
                 val containLoginOrRegister =
                     url.contains(KEY_USER_LOGIN) || url.contains(KEY_USER_REGISTER)
-                if (containLoginOrRegister && !response.headers(KEY_COOKIE).isEmpty()) {
+                if (containLoginOrRegister && response.headers(KEY_COOKIE).isNotEmpty()) {
                     val cookies = response.headers(KEY_COOKIE)
                     val cookie = encodeCookie(cookies)
                     saveCookie(requestUrl, domain, cookie)

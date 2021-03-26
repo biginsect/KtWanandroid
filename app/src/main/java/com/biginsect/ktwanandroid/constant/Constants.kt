@@ -11,5 +11,5 @@ object Constants {
     const val SP_NAME = "_preferences"
     @JvmField
     var toast: Toast? = null
-    const val BASE_URL = "http://wanandroid.com/"
+    const val BASE_URL = "https://www.wanandroid.com"
 }
