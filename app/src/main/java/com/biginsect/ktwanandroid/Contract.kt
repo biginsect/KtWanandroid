@@ -13,6 +13,6 @@ interface Contract {
     }
 
     interface IMainPresenter: MvpPresenter<IMainView>{
-        fun cal(a: Int, b: Int)
+        suspend fun cal(a: Int, b: Int)
     }
 }

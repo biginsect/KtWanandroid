@@ -38,6 +38,7 @@ abstract class BaseActivity : AbsActivity(), ISupportActivity,
         mStateLayout.reloadClickListener = this
         initView()
         initData()
+        requestData()
     }
 
     final override fun setContentView(layoutResID: Int) {
@@ -142,6 +143,11 @@ abstract class BaseActivity : AbsActivity(), ISupportActivity,
 
     @CallSuper
     open fun initData(){
+
+    }
+
+    @CallSuper
+    open fun requestData(){
 
     }
 

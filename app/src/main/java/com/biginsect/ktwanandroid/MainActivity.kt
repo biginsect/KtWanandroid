@@ -1,10 +1,13 @@
 package com.biginsect.ktwanandroid
 
+import androidx.lifecycle.lifecycleScope
 import com.biginsect.base_business.mvp.BaseMvpActivity
 import com.biginsect.ktwanandroid.util.showToast
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.coroutines.launch
 
-class MainActivity : BaseMvpActivity<Contract.IMainView, Contract.IMainPresenter>(), Contract.IMainView {
+class MainActivity : BaseMvpActivity<Contract.IMainView, Contract.IMainPresenter>(),
+    Contract.IMainView {
 
     override fun createPresenter(): Contract.IMainPresenter {
         return MainPresenter()
@@ -21,7 +24,9 @@ class MainActivity : BaseMvpActivity<Contract.IMainView, Contract.IMainPresenter
     override fun initView() {
         super.initView()
         btn_cal.setOnClickListener {
-            mPresenter?.cal(3, 2)
+            lifecycleScope.launch {
+                mPresenter?.cal(2, 3)
+            }
         }
     }
 

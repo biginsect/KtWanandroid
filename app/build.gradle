@@ -52,6 +52,8 @@ dependencies {
     implementation deps.okhttpLogging
     implementation deps.Coroutines_Converter
     implementation deps.logger
+    implementation deps.material
+    implementation deps.superTextView
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'

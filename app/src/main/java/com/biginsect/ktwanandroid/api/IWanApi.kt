@@ -16,7 +16,7 @@ interface IWanApi {
 
     @FormUrlEncoded
     @POST("user/login")
-    fun login(@Field("username")userName: String, @Field("password")password: String): Call<LoginResponse>
+    suspend fun login(@Field("username")userName: String, @Field("password")password: String): LoginResponse
 
     /**
      * @param code 验证码-公众号获取

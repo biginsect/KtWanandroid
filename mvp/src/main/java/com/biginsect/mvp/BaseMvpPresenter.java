@@ -16,7 +16,6 @@ public abstract class BaseMvpPresenter<V extends MvpView> implements MvpPresente
 
     @Override
     public void attachView(V v) {
-        Logger.d("sssssview is :" + v + this);
         viewRef = new WeakReference<>(v);
         presenterDestroy = false;
     }

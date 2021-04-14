@@ -1,11 +1,7 @@
 package com.biginsect.ktwanandroid
 
-import com.biginsect.ktwanandroid.bean.LoginResponse
 import com.biginsect.ktwanandroid.util.RetrofitHelper
 import com.biginsect.mvp.BaseMvpPresenter
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 /**
  *@author biginsect
@@ -13,19 +9,10 @@ import retrofit2.Response
  */
 class MainPresenter: BaseMvpPresenter<Contract.IMainView>(), Contract.IMainPresenter {
 
-    override fun cal(a: Int, b: Int) {
-        RetrofitHelper.WanService.login("", "").enqueue(object : Callback<LoginResponse>{
-            override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
-                if (response.isSuccessful){
-                    if (response.body()?.errorCode == 0){
-                        view?.show(200)
-                    }
-                }
-            }
-
-            override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
-
-            }
-        })
+    override suspend fun cal(a: Int, b: Int) {
+        val result = RetrofitHelper.WanService.login("biginsect", "meanler123")
+        if (result.errorCode == 0) {
+            view?.show(a + b)
+        }
     }
 }

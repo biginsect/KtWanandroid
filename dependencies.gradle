@@ -15,6 +15,7 @@ ext{
             'butterKnife'           : "10.2.3",
             'baseAdapter'           : "3.0.4",
             'fragmentTransition'    : "1.0.2",
+            'material'              : "1.2.0",
     ]
 
     deps = [
@@ -40,5 +41,6 @@ ext{
             'butterKnifeCompile'    : "com.jakewharton:butterknife-compiler:${versions.butterKnife}",
             'baseAdapter'           : "com.github.CymChad:BaseRecyclerViewAdapterHelper:${versions.baseAdapter}",
             'fragmentTransition'    : "me.yokeyword:fragmentationx:${versions.fragmentTransition}",
+            'material'              :"com.google.android.material:material:${versions.material}",
     ]
 }
