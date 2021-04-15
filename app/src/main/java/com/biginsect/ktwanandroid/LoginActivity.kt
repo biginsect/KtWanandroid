@@ -23,7 +23,7 @@ class LoginActivity: BaseActivity() {
             val username = et_username.text.toString()
             val pwd = et_pwd.text.toString()
             lifecycleScope.launch {
-                val result = RetrofitHelper.WanService.login(username, pwd)
+                val result = RetrofitHelper.getService().login(username, pwd)
                 if (result.errorCode == 0){
                     showToast("登录成功")
                 }

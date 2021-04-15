@@ -25,7 +25,11 @@ object RetrofitHelper {
     private const val TIMEOUT_CONNECT = 30L
     private const val TIMEOUT_READ = 10L
 
-    val WanService by lazy { getService(Constants.BASE_URL, IWanApi::class.java) }
+    fun getService(): IWanApi {
+        return mWanService
+    }
+
+    private val mWanService by lazy { getService(Constants.BASE_URL, IWanApi::class.java) }
 
     private fun <T> getService(url: String, service: Class<T>): T = create(url).create(service)
 

@@ -10,9 +10,6 @@ import com.biginsect.mvp.BaseMvpPresenter
 class MainPresenter: BaseMvpPresenter<Contract.IMainView>(), Contract.IMainPresenter {
 
     override suspend fun cal(a: Int, b: Int) {
-        val result = RetrofitHelper.WanService.login("biginsect", "meanler123")
-        if (result.errorCode == 0) {
-            view?.show(a + b)
-        }
+
     }
 }
