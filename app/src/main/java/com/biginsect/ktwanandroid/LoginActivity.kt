@@ -33,6 +33,17 @@ class LoginActivity: BaseActivity() {
 
     override fun requestData() {
         super.requestData()
+    }
 
+    override fun showStatusBar(): Boolean {
+        return true
+    }
+
+    override fun isStatusBarDarkStyle(): Boolean {
+        return false
+    }
+
+    override fun getStatusBarColor(): Int {
+        return R.color.color_03A9F4
     }
 }

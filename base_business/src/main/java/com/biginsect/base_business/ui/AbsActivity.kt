@@ -57,7 +57,7 @@ abstract class AbsActivity : AppCompatActivity() {
         mStatusBarViewStub = findViewById(R.id.sb_root)
         if (showStatusBar()) {
             mStatusBarViewStub.visibility = View.VISIBLE
-            mStatusBarViewStub.setBackgroundColor(getStatusBarColor())
+            mStatusBarViewStub.setBackgroundColor(getColor(getStatusBarColor()))
         } else {
             mStatusBarViewStub.visibility = View.GONE
         }
@@ -72,8 +72,9 @@ abstract class AbsActivity : AppCompatActivity() {
         return true
     }
 
+    @ColorRes
     open fun getStatusBarColor(): Int {
-        return resources.getColor(R.color.color_FFFFFF, null)
+        return R.color.color_FFFFFF
     }
 
     protected fun setStatusBarColor(@ColorRes resId: Int) {
