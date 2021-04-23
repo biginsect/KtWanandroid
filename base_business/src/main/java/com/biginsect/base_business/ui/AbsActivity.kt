@@ -3,6 +3,7 @@ package com.biginsect.base_business.ui
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
+import android.view.inputmethod.InputMethodManager
 import android.widget.FrameLayout
 import androidx.annotation.ColorRes
 import androidx.appcompat.app.AppCompatActivity
@@ -79,5 +80,10 @@ abstract class AbsActivity : AppCompatActivity() {
 
     protected fun setStatusBarColor(@ColorRes resId: Int) {
         mStatusBarViewStub.setBackgroundColor(getColor(resId))
+    }
+
+    protected fun hideSoftKeyboard(view: View){
+        val inputManager = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+        inputManager.hideSoftInputFromWindow(view.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
     }
 }

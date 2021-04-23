@@ -3,4 +3,5 @@
     <string name="hint_user_name">Type your user name.</string>
     <string name="hint_pwd">Type your pass word.</string>
     <string name="login">登录</string>
+    <string name="no_empty">Cannot be empty.</string>
 </resources>

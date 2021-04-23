@@ -9,7 +9,14 @@
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="@dimen/dpx_53"
-        android:background="@color/color_4FC3F7" />
+        android:background="@color/color_4FC3F7"
+        android:elevation="@dimen/dpx_12"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dpx_200"
+        android:src="@drawable/ic_login_header"
+        android:scaleType="centerCrop"/>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/til_username"
@@ -17,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/dpx_20"
         android:layout_marginEnd="@dimen/dpx_20"
-        android:layout_marginTop="@dimen/dpx_20">
+        android:layout_marginTop="@dimen/dpx_40">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_username"

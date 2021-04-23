@@ -12,4 +12,5 @@ class MainPresenter: BaseMvpPresenter<Contract.IMainView>(), Contract.IMainPrese
     override suspend fun cal(a: Int, b: Int) {
 
     }
+
 }

@@ -1,8 +1,6 @@
 package com.biginsect.ktwanandroid.api
 
-import com.biginsect.ktwanandroid.bean.LoginResponse
-import kotlinx.coroutines.Deferred
-import retrofit2.Call
+import com.biginsect.ktwanandroid.bean.LoginResult
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
@@ -16,7 +14,7 @@ interface IWanApi {
 
     @FormUrlEncoded
     @POST("user/login")
-    suspend fun login(@Field("username")userName: String, @Field("password")password: String): LoginResponse
+    suspend fun login(@Field("username")userName: String, @Field("password")password: String): LoginResult
 
     /**
      * @param code 验证码-公众号获取
