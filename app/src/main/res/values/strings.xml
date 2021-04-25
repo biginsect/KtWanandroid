@@ -1,7 +1,8 @@
 <resources>
-    <string name="app_name">wan</string>
+    <string name="app_name">wanandroid</string>
     <string name="hint_user_name">Type your user name.</string>
     <string name="hint_pwd">Type your pass word.</string>
     <string name="login">登录</string>
     <string name="no_empty">Cannot be empty.</string>
+    <string name="login_success">登录成功</string>
 </resources>

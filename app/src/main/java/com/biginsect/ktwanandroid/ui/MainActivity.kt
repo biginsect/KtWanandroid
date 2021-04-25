@@ -1,11 +1,16 @@
-package com.biginsect.ktwanandroid
+package com.biginsect.ktwanandroid.ui
 
 import androidx.lifecycle.lifecycleScope
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.biginsect.base_business.mvp.BaseMvpActivity
-import com.biginsect.ktwanandroid.util.showToast
+import com.biginsect.ktwanandroid.Contract
+import com.biginsect.ktwanandroid.MainPresenter
+import com.biginsect.ktwanandroid.R
+import com.biginsect.ktwanandroid.constant.RouterPath
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.launch
 
+@Route(path = RouterPath.HOME)
 class MainActivity : BaseMvpActivity<Contract.IMainView, Contract.IMainPresenter>(),
     Contract.IMainView {
 
@@ -18,7 +23,7 @@ class MainActivity : BaseMvpActivity<Contract.IMainView, Contract.IMainPresenter
     }
 
     override fun show(result: Int) {
-        showToast("result is $result")
+
     }
 
     override fun initView() {
@@ -31,6 +36,14 @@ class MainActivity : BaseMvpActivity<Contract.IMainView, Contract.IMainPresenter
     }
 
     override fun getStatusBarColor(): Int {
-        return R.color.color_993366FF
+        return R.color.color_FFFFFF
+    }
+
+    override fun isStatusBarDarkStyle(): Boolean {
+        return true
+    }
+
+    override fun onBackPressedSupport() {
+        super.onBackPressedSupport()
     }
 }

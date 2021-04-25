@@ -16,6 +16,7 @@ ext{
             'baseAdapter'           : "3.0.4",
             'fragmentTransition'    : "1.0.2",
             'material'              : "1.2.0",
+            'ARouter'               : "1.5.1",
     ]
 
     deps = [
@@ -41,6 +42,8 @@ ext{
             'butterKnifeCompile'    : "com.jakewharton:butterknife-compiler:${versions.butterKnife}",
             'baseAdapter'           : "com.github.CymChad:BaseRecyclerViewAdapterHelper:${versions.baseAdapter}",
             'fragmentTransition'    : "me.yokeyword:fragmentationx:${versions.fragmentTransition}",
-            'material'              :"com.google.android.material:material:${versions.material}",
+            'material'              : "com.google.android.material:material:${versions.material}",
+            'ARouterApi'            : "com.alibaba:arouter-api:${versions.ARouter}",
+            'ARouterCompiler'       : "com.alibaba:arouter-compiler:${versions.ARouter}",
     ]
 }

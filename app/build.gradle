@@ -14,6 +14,12 @@ android {
         versionCode 1
         versionName "1.0"
 
+        kapt {
+            arguments {
+                arg("AROUTER_MODULE_NAME", project.getName())
+            }
+        }
+
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -54,6 +60,8 @@ dependencies {
     implementation deps.logger
     implementation deps.material
     implementation deps.superTextView
+    implementation deps.ARouterApi
+    kapt deps.ARouterCompiler
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
