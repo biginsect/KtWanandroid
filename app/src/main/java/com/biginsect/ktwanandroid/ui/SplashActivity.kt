@@ -1,16 +1,20 @@
 package com.biginsect.ktwanandroid.ui
 
+import android.graphics.Color
+import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.view.View
+import android.view.WindowManager
+import androidx.appcompat.app.AppCompatActivity
 import com.alibaba.android.arouter.launcher.ARouter
-import com.biginsect.base_business.ui.BaseActivity
 import com.biginsect.ktwanandroid.constant.RouterPath
 
 /**
  *@author biginsect
  *Created at 2021/4/25 17:29
  */
-class SplashActivity : BaseActivity() {
+class SplashActivity : AppCompatActivity() {
 
     private val mHandler by lazy { Handler(Looper.getMainLooper()) }
     private val mToHomeTask by lazy {
@@ -21,17 +25,19 @@ class SplashActivity : BaseActivity() {
     }
     private val delay = 500L
 
-    override fun getLayoutId(): Int {
-        return 0
-    }
-
-    override fun initData() {
-        super.initData()
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setStatusBarTranslucent()
         mHandler.removeCallbacks(mToHomeTask)
         mHandler.postDelayed(mToHomeTask, delay)
     }
 
-    override fun showStatusBar(): Boolean {
-        return false
+    private fun setStatusBarTranslucent(){
+        window.navigationBarColor = Color.TRANSPARENT
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+        val option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+        window.decorView.systemUiVisibility = option
+        window.statusBarColor = Color.TRANSPARENT
     }
 }
