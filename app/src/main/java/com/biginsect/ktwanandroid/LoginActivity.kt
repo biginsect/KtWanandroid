@@ -3,8 +3,8 @@ package com.biginsect.ktwanandroid
 import androidx.lifecycle.lifecycleScope
 import com.biginsect.base_business.ui.BaseActivity
 import com.biginsect.ktwanandroid.listener.SimpleTextWatcher
-import com.biginsect.ktwanandroid.util.RetrofitHelper
-import com.biginsect.ktwanandroid.util.showToast
+import com.biginsect.ktwanandroid.http.RetrofitHelper
+import com.biginsect.ktwanandroid.utils.showToast
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.coroutines.launch
 

@@ -1,6 +1,5 @@
 package com.biginsect.ktwanandroid
 
-import com.biginsect.ktwanandroid.util.RetrofitHelper
 import com.biginsect.mvp.BaseMvpPresenter
 
 /**

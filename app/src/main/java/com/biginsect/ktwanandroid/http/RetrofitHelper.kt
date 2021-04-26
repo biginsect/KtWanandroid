@@ -1,13 +1,21 @@
-package com.biginsect.ktwanandroid.util
+package com.biginsect.ktwanandroid.http
 
 import android.util.Log
+import com.biginsect.ktwanandroid.BuildConfig
 import com.biginsect.ktwanandroid.api.IWanApi
+import com.biginsect.ktwanandroid.app.WanApp
 import com.biginsect.ktwanandroid.constant.Constants
+import com.biginsect.ktwanandroid.utils.NetworkUtil
+import com.biginsect.ktwanandroid.utils.Preferences
+import com.biginsect.ktwanandroid.utils.encodeCookie
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
+import okhttp3.Cache
+import okhttp3.CacheControl
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.io.File
 import java.util.concurrent.TimeUnit
 
 /**
@@ -34,6 +42,9 @@ object RetrofitHelper {
     private fun <T> getService(url: String, service: Class<T>): T = create(url).create(service)
 
     private fun create(url: String): Retrofit {
+        val cacheFile = File(WanApp.context.cacheDir, "cache")
+        //50M的缓存
+        val cache = Cache(cacheFile, 1024 * 1024 * 50)
         val okHttpClientBuilder = OkHttpClient().newBuilder().apply {
             connectTimeout(TIMEOUT_CONNECT, TimeUnit.SECONDS)
             readTimeout(TIMEOUT_READ, TimeUnit.SECONDS)
@@ -57,6 +68,7 @@ object RetrofitHelper {
             addInterceptor {
                 val request = it.request()
                 val urlBuilder = request.newBuilder()
+                urlBuilder.addHeader("Content-type", "application/json; charset=utf-8")
                 val host = request.url.host
                 if (host.isNotEmpty()) {
                     val spHost by Preferences(host, "")
@@ -71,10 +83,41 @@ object RetrofitHelper {
                 }
                 it.proceed(request)
             }
+            //cache
+            addInterceptor {
+                var request = it.request()
+                if (!NetworkUtil.isNetworkAvailable(WanApp.context)) {
+                    request = request.newBuilder()
+                        .cacheControl(CacheControl.FORCE_CACHE)
+                        .build()
+                }
+                val response = it.proceed(request)
+                if (NetworkUtil.isNetworkAvailable(WanApp.context)) {
+                    val maxAge = 60 * 3
+                    response.newBuilder()
+                        .header("Cache-Control", "public, max-age=$maxAge")
+                        .removeHeader("Retrofit").build()
+                } else {
+                    val maxStale = 60 * 60 * 24 * 14
+                    response.newBuilder()
+                        .header("Cache-Control", "public, only-if-cached, max-stale=$maxStale")
+                        .removeHeader("nyn")
+                        .build()
+                }
+                response
+            }
+            cache(cache)
             //log
             addInterceptor(HttpLoggingInterceptor {
                 Log.d(TAG, LOG_PRE + it)
-            }.apply { level = HttpLoggingInterceptor.Level.BODY })
+            }.apply {
+                level = if (BuildConfig.DEBUG) {
+                    HttpLoggingInterceptor.Level.BODY
+                } else {
+                    HttpLoggingInterceptor.Level.NONE
+                }
+            })
+            retryOnConnectionFailure(true)
         }
 
         return Retrofit.Builder().apply {

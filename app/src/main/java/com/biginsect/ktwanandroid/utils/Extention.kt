@@ -1,4 +1,4 @@
-package com.biginsect.ktwanandroid.util
+package com.biginsect.ktwanandroid.utils
 
 import android.content.Context
 import android.widget.Toast
