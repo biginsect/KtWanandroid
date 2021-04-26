@@ -30,4 +30,8 @@ class SplashActivity : BaseActivity() {
         mHandler.removeCallbacks(mToHomeTask)
         mHandler.postDelayed(mToHomeTask, delay)
     }
+
+    override fun showStatusBar(): Boolean {
+        return false
+    }
 }
