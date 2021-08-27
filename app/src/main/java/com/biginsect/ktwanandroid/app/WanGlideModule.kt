@@ -1,9 +1,12 @@
 package com.biginsect.ktwanandroid.app
 
 import android.content.Context
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import com.bumptech.glide.GlideBuilder
 import com.bumptech.glide.annotation.GlideModule
 import com.bumptech.glide.module.AppGlideModule
+import com.bumptech.glide.request.RequestOptions
 
 /**
  *@author biginsect
@@ -11,8 +14,13 @@ import com.bumptech.glide.module.AppGlideModule
  */
 
 @GlideModule
-class WanGlideModule: AppGlideModule() {
+class WanGlideModule : AppGlideModule() {
     override fun applyOptions(context: Context, builder: GlideBuilder) {
-        super.applyOptions(context, builder)
+        builder.setDefaultRequestOptions(
+            RequestOptions()
+                .centerCrop()
+                .error(ColorDrawable(Color.parseColor("#ededed")))
+                .placeholder(ColorDrawable(Color.parseColor("#ededed")))
+        )
     }
 }

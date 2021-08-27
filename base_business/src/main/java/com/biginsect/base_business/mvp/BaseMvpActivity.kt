@@ -4,15 +4,13 @@ import android.os.Bundle
 import com.biginsect.base_business.ui.BaseActivity
 import com.biginsect.mvp.ActivityMvpDelegateImpl
 import com.biginsect.mvp.MvpDelegateCallback
-import com.biginsect.mvp.MvpPresenter
-import com.biginsect.mvp.MvpView
 
 /**
  *@author biginsect
  *Created at 2021/3/18 20:08
  */
-abstract class BaseMvpActivity<V : MvpView, P : MvpPresenter<V>>
-    : BaseActivity(), MvpView, MvpDelegateCallback<V, P> {
+abstract class BaseMvpActivity<V : IBaseView, P : IBasePresenter<V>>
+    : BaseActivity(), IBaseView, MvpDelegateCallback<V, P> {
 
     protected var mPresenter: P? = null
     private val mvpDelegate by lazy { ActivityMvpDelegateImpl(this, this, true) }
@@ -80,5 +78,15 @@ abstract class BaseMvpActivity<V : MvpView, P : MvpPresenter<V>>
     @Suppress("UNCHECKED_CAST")
     override fun getMvpView(): V? {
         return this as V
+    }
+
+    override fun showError() {
+
+    }
+
+    override fun showErrorMessage(errorMsg: String?) {
+        if (!errorMsg.isNullOrEmpty()){
+            showSnackMessage(errorMsg)
+        }
     }
 }

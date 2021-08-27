@@ -1,6 +1,8 @@
 package com.biginsect.ktwanandroid.api
 
+import com.biginsect.ktwanandroid.bean.BaseResult
 import com.biginsect.ktwanandroid.bean.LoginResult
+import io.reactivex.rxjava3.core.Observable
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
@@ -14,7 +16,7 @@ interface IWanApi {
 
     @FormUrlEncoded
     @POST("user/login")
-    suspend fun login(@Field("username")userName: String, @Field("password")password: String): LoginResult
+    fun login(@Field("username")userName: String, @Field("password")password: String): Observable<BaseResult<LoginResult>>
 
     /**
      * @param code 验证码-公众号获取

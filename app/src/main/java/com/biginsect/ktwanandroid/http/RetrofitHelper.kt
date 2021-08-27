@@ -6,7 +6,7 @@ import com.biginsect.ktwanandroid.api.IWanApi
 import com.biginsect.ktwanandroid.app.WanApp
 import com.biginsect.ktwanandroid.constant.Constants
 import com.biginsect.ktwanandroid.utils.NetworkUtil
-import com.biginsect.ktwanandroid.utils.Preferences
+import com.biginsect.base_business.util.Preferences
 import com.biginsect.ktwanandroid.utils.encodeCookie
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import okhttp3.Cache

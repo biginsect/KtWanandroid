@@ -8,8 +8,8 @@ import android.widget.Toast
  */
 object Constants {
 
-    const val SP_NAME = "_preferences"
     @JvmField
     var toast: Toast? = null
     const val BASE_URL = "https://www.wanandroid.com"
+    const val CODE_SUCCESS = 0
 }

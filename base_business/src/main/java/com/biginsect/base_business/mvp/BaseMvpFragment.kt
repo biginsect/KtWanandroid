@@ -10,8 +10,8 @@ import com.biginsect.mvp.*
  *@author biginsect
  *Created at 2021/3/18 20:25
  */
-abstract class BaseMvpFragment<V : MvpView, P : MvpPresenter<V>>
-    : BaseFragment(), MvpDelegateCallback<V, P>, MvpView {
+abstract class BaseMvpFragment<V : IBaseView, P : IBasePresenter<V>>
+    : BaseFragment(), MvpDelegateCallback<V, P>, IBaseView {
 
     private val mvpDelegate: FragmentMvpDelegate<V, P> by lazy {
         FragmentMvpDelegateImpl(

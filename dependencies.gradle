@@ -10,6 +10,7 @@ ext{
             'constraintlayout'      : "2.0.4",
             'appcompat'             : "1.2.0",
             'LifeCycle'             : "2.3.0",
+            'viewpager2'            : "1.0.0",
             'superTextView'         : "2.4.2",
             'lottie'                : "3.6.1",
             'butterKnife'           : "10.2.3",
@@ -17,6 +18,7 @@ ext{
             'fragmentTransition'    : "1.0.2",
             'material'              : "1.2.0",
             'ARouter'               : "1.5.1",
+            'Rx'                    : "3.0.0",
     ]
 
     deps = [
@@ -45,5 +47,8 @@ ext{
             'material'              : "com.google.android.material:material:${versions.material}",
             'ARouterApi'            : "com.alibaba:arouter-api:${versions.ARouter}",
             'ARouterCompiler'       : "com.alibaba:arouter-compiler:${versions.ARouter}",
+            'ViewPager2'            : "androidx.viewpager2:viewpager2:${versions.viewpager2}",
+            'RxJava'                : "io.reactivex.rxjava3:rxjava:${versions.Rx}",
+            'RxAndroid'             : "io.reactivex.rxjava3:rxandroid:${versions.Rx}",
     ]
 }

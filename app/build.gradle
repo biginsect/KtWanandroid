@@ -62,6 +62,9 @@ dependencies {
     implementation deps.superTextView
     implementation deps.ARouterApi
     kapt deps.ARouterCompiler
+    implementation deps.baseAdapter
+    implementation deps.RxJava
+    implementation deps.RxAndroid
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'

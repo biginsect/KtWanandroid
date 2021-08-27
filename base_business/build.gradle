@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         minSdkVersion 29
-        targetSdkVersion 29
+        targetSdkVersion 30
         versionCode 1
         versionName "1.0"
 
@@ -42,6 +42,8 @@ dependencies {
     implementation deps.lottie
     implementation deps.baseAdapter
     api deps.fragmentTransition
+    implementation deps.ViewPager2
+    implementation deps.material
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'

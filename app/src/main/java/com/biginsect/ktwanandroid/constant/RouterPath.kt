@@ -7,4 +7,5 @@ package com.biginsect.ktwanandroid.constant
 object RouterPath {
 
     const val HOME = "/app/home"
+    const val LOGIN = "app/login"
 }
