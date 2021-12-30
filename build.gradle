@@ -6,16 +6,16 @@ buildscript {
         androidDependenciesCommon = "${rootDir}/dependencies.gradle"
     }
 
-    ext.kotlin_version = "1.4.30"
+    ext.kotlin_version = "1.5.31"
     apply from:"${androidDependenciesCommon}"
     repositories {
         maven { url 'https://maven.aliyun.com/repository/jcenter' }
         maven { url 'https://maven.aliyun.com/repository/google' }
         google()
-        jcenter()
+        mavenCentral()
     }
     dependencies {
-        classpath "com.android.tools.build:gradle:4.0.1"
+        classpath "com.android.tools.build:gradle:4.0.2"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "com.alibaba:arouter-register:1.0.2"
 
@@ -30,7 +30,7 @@ allprojects {
         maven { url 'https://maven.aliyun.com/repository/google' }
         maven { url "https://jitpack.io" }
         google()
-        jcenter()
+        mavenCentral()
     }
 }
 
